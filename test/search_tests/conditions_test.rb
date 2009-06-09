@@ -10,8 +10,8 @@ module SearchTests
       search.conditions = {:name_like => "Binary"}
       assert_kind_of Searchlogic::Conditions::Base, search.conditions
     
-      search = Account.new_search(:conditions => {:name_like => "Ben"})
-      assert_equal({:name_like => "Ben"}, search.conditions.conditions)
+      search = Account.new_search(:conditions => {:name_like => "Ben", :any_text_field_matches => 'Ben'})
+      assert_equal({:name_like => "Ben", :any_text_field_matches => 'Ben'}, search.conditions.conditions)
     end
 
     def test_sanitize
